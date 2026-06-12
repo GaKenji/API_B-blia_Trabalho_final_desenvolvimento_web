@@ -1,6 +1,6 @@
 package com.example.Gabriel.API_Biblia.controller;
 
-import com.example.Gabriel.API_Biblia.dto.CadastroUsuarioDTO;
+import com.example.Gabriel.API_Biblia.dto.LoginDTO;
 import com.example.Gabriel.API_Biblia.entity.Usuario;
 import com.example.Gabriel.API_Biblia.services.UsuarioService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,17 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioController {
+@RequestMapping("/login")
+public class UsuarioLoginControler {
+    private final UsuarioService service;
 
-    private UsuarioService service;
-
-    public UsuarioController(UsuarioService service) {
+    public UsuarioLoginControler(UsuarioService service) {
         this.service = service;
     }
 
     @PostMapping
-    public Usuario cadastrar(@RequestBody CadastroUsuarioDTO dto){
-        return service.cadastrar(dto);
-    }
+    public Usuario login(@RequestBody LoginDTO dto){return service.login(dto);}
 }
