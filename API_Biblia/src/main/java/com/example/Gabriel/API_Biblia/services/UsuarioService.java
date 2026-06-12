@@ -1,10 +1,13 @@
 package com.example.Gabriel.API_Biblia.services;
 
 import com.example.Gabriel.API_Biblia.dto.CadastroUsuarioDTO;
+import com.example.Gabriel.API_Biblia.dto.LoginDTO;
 import com.example.Gabriel.API_Biblia.entity.Usuario;
 import com.example.Gabriel.API_Biblia.repository.UsuarioRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -25,13 +28,23 @@ public class UsuarioService {
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(encoder.encode(dto.getSenha()));
-        usuario.setApi_key(UUID.randomUUID().toString());
+        usuario.setApikey(UUID.randomUUID().toString());
         usuario.setData_criacao(LocalDateTime.now());
         usuario.setRequisicoes(0L);
 
         if(repository.findByEmail(dto.getEmail()).isPresent()){
-            throw new RuntimeException("E-mail já cadastrado");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "E-mail já cadastrado");
         }
         return repository.save(usuario);
+    }
+
+    public Usuario login(LoginDTO dto){
+        Usuario usuario = repository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+
+        if(!encoder.matches(dto.getSenha(), usuario.getSenha()))
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha Inválida");
+
+        return usuario;
     }
 }
