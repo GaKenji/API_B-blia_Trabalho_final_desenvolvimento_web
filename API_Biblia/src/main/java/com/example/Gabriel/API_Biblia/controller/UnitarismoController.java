@@ -1,6 +1,6 @@
 package com.example.Gabriel.API_Biblia.controller;
 
-import com.example.Gabriel.API_Biblia.dto.UnitarismoResponseDTO;
+import com.example.Gabriel.API_Biblia.dto.VersiculoResponseDTO;
 import com.example.Gabriel.API_Biblia.entity.Versiculo;
 import com.example.Gabriel.API_Biblia.repository.VersiculoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +16,11 @@ public class UnitarismoController {
         this.versiculoRepository = versiculoRepository;
     }
 
-    @GetMapping("/unitarismo")
-    public List<UnitarismoResponseDTO> unitarismo(){
+    @GetMapping("/Temas/unitarismo")
+    public List<VersiculoResponseDTO> unitarismo(){
         List<Versiculo> versiculos = versiculoRepository.findByTemasTema("Unitarismo");
         return versiculos.stream().map(
-                v -> new UnitarismoResponseDTO(
+                v -> new VersiculoResponseDTO(
                         v.getCapitulo()
                                 .getLivro()
                                 .getTitulo(),
