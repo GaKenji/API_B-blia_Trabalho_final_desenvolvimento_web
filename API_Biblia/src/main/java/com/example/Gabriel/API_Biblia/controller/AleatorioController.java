@@ -1,6 +1,8 @@
 package com.example.Gabriel.API_Biblia.controller;
 
+import com.example.Gabriel.API_Biblia.dto.VersiculoResponseDTO;
 import com.example.Gabriel.API_Biblia.entity.Versiculo;
+import com.example.Gabriel.API_Biblia.repository.VersiculoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,15 +11,20 @@ import java.util.Random;
 
 @RestController
 public class AleatorioController {
+    private final VersiculoRepository repository;
 
-    //@GetMapping("/versiculo/aleatorio")
-    //public Versiculo versiculo(){
-        //AllVersiculos allVersiculo = new AllVersiculos();
-        //List<Versiculo> versiculos = allVersiculo.getVersiculos();
+    public AleatorioController(VersiculoRepository repository) {this.repository = repository;}
 
-        //Random rand = new Random();
-        //int index = rand.nextInt(versiculos.size());
-        //return versiculos.get(index);
-    //}
+    @GetMapping("/Aleatório")
+    public VersiculoResponseDTO versiculo(){
+        List<Versiculo> versiculos = repository.findAll();
+        Versiculo versiculo = versiculos.get(new Random().nextInt(versiculos.size()));
+        return new VersiculoResponseDTO(
+                versiculo.getCapitulo().getLivro().getTitulo(),
+                versiculo.getCapitulo().getNumeroCapitulo(),
+                versiculo.getNumeroVersiculo(),
+                versiculo.getTexto()
+        );
+    }
 
 }

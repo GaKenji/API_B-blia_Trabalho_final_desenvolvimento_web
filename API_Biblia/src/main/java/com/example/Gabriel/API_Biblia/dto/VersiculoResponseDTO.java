@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 //Organiza a resposta do endpoint "unitarismo"
-public class UnitarismoResponseDTO {
+public class VersiculoResponseDTO {
     private String livro;
     private int capitulo;
     private int numVersiculo;
