@@ -6,19 +6,22 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/login.css">
     <title>Tela de login</title>
+
 </head>
 <body>
 
     <main class="container">
 
-        <form>
+        <form action="docs.html">
             <h1>Login</h1>
             <div class="input-box">
-                <input placeholder="Usuário" type="email">
+                <label for="email"></label>
+                <input placeholder="E-mail" type="email" id="email" name="email">
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input-box">
-                <input placeholder="Senha" type="password">
+                <label for="senha"></label>
+                <input placeholder="Senha" type="password" id="senha" name="senha">
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
@@ -33,7 +36,7 @@
             <button type="submit" class="login">Login</button>
 
             <div class="register-link">
-                <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
             </div>
 
         </form>
