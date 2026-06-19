@@ -14,8 +14,8 @@ import java.util.UUID;
 
 @Service
 public class UsuarioService {
-    private final UsuarioRepository repository;
-    private final BCryptPasswordEncoder encoder;
+    private final UsuarioRepository repository;//Para o acesso aos CRUDs
+    private final BCryptPasswordEncoder encoder;//
 
     public UsuarioService(UsuarioRepository repository, BCryptPasswordEncoder encoder) {
         this.repository = repository;
