@@ -16,8 +16,7 @@ public class SecurityConfig {
         Quando eu quiser proteger endpoints com API Key futuramente,
         a estrutura já estará no lugar — é só ajustar o .authorizeHttpRequests.
         */
-        http
-                .csrf(csrf -> csrf.disable())
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll() // libera tudo por enquanto
                 );
