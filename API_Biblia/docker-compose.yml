@@ -2,7 +2,6 @@ services:
 
   postgres:
     image: postgres:17
-
     container_name: postgres-api-biblia
 
     environment:
@@ -18,8 +17,10 @@ services:
 
   api:
     build: .
-
     container_name: api-biblia
+
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
 
     ports:
       - "8080:8080"
