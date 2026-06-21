@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif, Arial;
 }
 
 body {
@@ -18,7 +18,8 @@ body {
 }
 
 .container {
-    width: 420px;
+    width: 90%;
+    max-width: 420px;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     border-radius: 10px;
@@ -62,12 +63,6 @@ body {
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
-}
-
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    margin: -15px 0 15px;
 }
 
 .remember-forgot label input {
@@ -121,4 +116,21 @@ body {
     text-decoration: underline;
 }
 
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0 20px; 
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
 

@@ -6,28 +6,27 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/login.css">
     <title>Tela de login</title>
-
 </head>
 <body>
-
     <main class="container">
-
-        <form action="docs.html">
+        <form id="form-login">
             <h1>Login</h1>
+            
             <div class="input-box">
-                <label for="email"></label>
-                <input placeholder="E-mail" type="email" id="email" name="email">
-                <i class="bx bxs-user"></i>
+                <label for="email" class="sr-only">E-mail</label>
+                <input placeholder="E-mail" type="email" id="email" name="email" required>
+                <i class="bx bxs-envelope"></i>
             </div>
+            
             <div class="input-box">
-                <label for="senha"></label>
-                <input placeholder="Senha" type="password" id="senha" name="senha">
+                <label for="senha" class="sr-only">Senha</label>
+                <input placeholder="Senha" type="password" id="senha" name="senha" required>
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
             <div class="remember-forgot">
-                <label>
-                    <input type="checkbox">
+                <label for="lembrar">
+                    <input type="checkbox" id="lembrar" name="lembrar">
                     Lembrar senha
                 </label>
                 <a href="#">Esqueci a senha</a>
@@ -38,10 +37,8 @@
             <div class="register-link">
                 <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
             </div>
-
         </form>
-
     </main>
-
+    <script src="js/login.js"></script>
 </body>
 </html>
