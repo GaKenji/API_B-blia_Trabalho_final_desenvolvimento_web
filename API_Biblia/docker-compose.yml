@@ -3,6 +3,7 @@ services:
   postgres:
     image: postgres:17
     container_name: postgres-api-biblia
+    restart: unless-stopped
 
     environment:
       POSTGRES_DB: api_biblia
@@ -14,10 +15,12 @@ services:
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   api:
     build: .
     container_name: api-biblia
+    restart: unless-stopped
 
     environment:
       SPRING_PROFILES_ACTIVE: docker
