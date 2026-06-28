@@ -1,6 +1,8 @@
 package com.example.Gabriel.API_Biblia.services;
 
 import com.example.Gabriel.API_Biblia.dto.CadastroUsuarioDTO;
+import com.example.Gabriel.API_Biblia.services.JwtService;
+import com.example.Gabriel.API_Biblia.dto.LoginResponseDTO;
 import com.example.Gabriel.API_Biblia.dto.LoginDTO;
 import com.example.Gabriel.API_Biblia.entity.Usuario;
 import com.example.Gabriel.API_Biblia.repository.UsuarioRepository;
@@ -16,10 +18,12 @@ import java.util.UUID;
 public class UsuarioService {
     private final UsuarioRepository repository;//Para o acesso aos CRUDs
     private final BCryptPasswordEncoder encoder;//
+    private final JwtService jwtService;
 
-    public UsuarioService(UsuarioRepository repository, BCryptPasswordEncoder encoder) {
+    public UsuarioService(UsuarioRepository repository, BCryptPasswordEncoder encoder, JwtService jwtService) {
         this.repository = repository;
         this.encoder = encoder;
+        this.jwtService =  jwtService;
     }
 
     public Usuario cadastrar(CadastroUsuarioDTO dto){
@@ -38,13 +42,15 @@ public class UsuarioService {
         return repository.save(usuario);
     }
 
-    public Usuario login(LoginDTO dto){
+    public LoginResponseDTO login(LoginDTO dto){
         Usuario usuario = repository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
         if(!encoder.matches(dto.getSenha(), usuario.getSenha()))
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha Inválida");
 
-        return usuario;
+        String token = jwtService.gerarToken(usuario);
+
+        return new LoginResponseDTO(token);
     }
 }
