@@ -1,7 +1,7 @@
 package com.example.Gabriel.API_Biblia.controller;
 
 import com.example.Gabriel.API_Biblia.dto.LoginDTO;
-import com.example.Gabriel.API_Biblia.entity.Usuario;
+import com.example.Gabriel.API_Biblia.dto.LoginResponseDTO;
 import com.example.Gabriel.API_Biblia.services.UsuarioService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,5 +18,7 @@ public class UsuarioLoginControler {
     }
 
     @PostMapping
-    public Usuario login(@RequestBody LoginDTO dto){return service.login(dto);}
+    public LoginResponseDTO login(@RequestBody LoginDTO dto){
+        return service.login(dto);
+    }
 }

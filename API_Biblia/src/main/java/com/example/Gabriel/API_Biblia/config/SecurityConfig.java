@@ -6,19 +6,36 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import com.example.Gabriel.API_Biblia.repository.UsuarioRepository;
+import com.example.Gabriel.API_Biblia.services.JwtService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(
+            HttpSecurity http,
+            JwtService jwtService,
+            UsuarioRepository usuarioRepository) throws Exception {
         /*
         Quando eu quiser proteger endpoints com API Key futuramente,
         a estrutura já estará no lugar — é só ajustar o .authorizeHttpRequests.
         */
-        http.csrf(csrf -> csrf.disable())
+        http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // libera tudo por enquanto
+                        .requestMatchers(
+                                "/login",
+                                "/usuarios/cadastro",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll().anyRequest().authenticated()
+                )
+                .addFilterBefore(
+                        jwtAuthenticationFilter(jwtService, usuarioRepository),
+                        UsernamePasswordAuthenticationFilter.class
                 );
         return http.build();
     }
@@ -28,5 +45,13 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
         /*Evita de salvar a senha diretamente no banco
         Com isso, salvamos o hash da senha*/
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(
+            JwtService jwtService,
+            UsuarioRepository usuarioRepository){
+
+        return new JwtAuthenticationFilter(jwtService, usuarioRepository);
     }
 }
