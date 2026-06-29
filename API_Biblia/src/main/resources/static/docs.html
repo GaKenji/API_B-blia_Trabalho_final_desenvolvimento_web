@@ -3,9 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docs</title>
+    <title>Documentação - API Bíblia</title>
+    <link rel="stylesheet" href="css/docs.css">
 </head>
 <body>
+
+    <header class="topbar">
+        <div class="logo">
+            <i class='bx bx-book-open'></i>
+            <h1>API Bíblia</h1>
+        </div>
+        <button id="btn-deslogar" class="btn-logout">
+            <i class='bx bx-log-out'></i> Deslogar
+        </button>
+    </header>
+
+    <div class="layout">
+        
+        <aside class="sidebar">
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <details id="menu-temas">
+                            <summary>
+                                <div class="endpoint-title">
+                                    <span class="method get">GET</span>
+                                    <span>Versículos por temas</span>
+                                </div>
+                                <i class='bx bx-chevron-down'></i>
+                            </summary>
+                            <ul class="submenu">
+                                <li><a href="#" data-endpoint="temas-lista">Listar Temas</a></li>
+                                <li><a href="#" data-endpoint="temas-unitarismo">Tema: Unitarismo</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="menu-link" data-endpoint="aleatorio">
+                            <div class="endpoint-title">
+                                <span class="method get">GET</span>
+                                <span>Versículos aleatórios</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div id="welcome-screen">
+                <h2>Documentação da API Bíblia</h2>
+                <p>Selecione um endpoint no menu lateral para visualizar os detalhes e exemplos de retorno.</p>
+            </div>
+
+            <div id="endpoint-details" style="display: none;">
+                <div class="endpoint-header">
+                    <span id="ep-method" class="method get">GET</span>
+                    <h2 id="ep-path">/caminho-da-api</h2>
+                </div>
+                <p id="ep-desc" class="description">Descrição do que essa rota faz.</p>
+                
+                <div class="response-section">
+                    <h3>Exemplo de Resposta (JSON)</h3>
+                    <pre><code id="ep-json"></code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
     
     <script src="js/docs.js"></script>
 </body>

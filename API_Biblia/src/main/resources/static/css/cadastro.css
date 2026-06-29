@@ -32,37 +32,45 @@ body {
 .container h1 {
     font-size: 36px;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .input-box {
     position: relative;
     width: 100%;
-    height: 50px;
-    margin: 30px 0;
+    margin-bottom: 20px;
 }
 
 .input-box input {
     width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 40px;
-    outline: none;
     font-size: 16px;
     color: #fff;
-    padding: 20px 45px 20px 20px;
+    padding: 0 45px; /* Espaço na esquerda e na direita */
+    transition: 0.3s;
 }
 
-.input-box input::placeholder {
-    color: #ffffff;
+.input-box .icon-left {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #fff;
+    pointer-events: none;
 }
 
-.input-box i {
+.input-box .icon-right {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
+    color: #fff;
+    cursor: pointer;
 }
 
 .remember-forgot label input {
@@ -132,4 +140,13 @@ body {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+}
+
+.input-box input::placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.input-box i {
+    color: #ffffff;
 }
