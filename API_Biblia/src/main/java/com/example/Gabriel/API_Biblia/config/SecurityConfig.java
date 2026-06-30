@@ -28,9 +28,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/login",
-                                "/usuarios/cadastro",
+                                "/cadastro",
+
+                                "/login.html",
+                                "/cadastro.html",
+                                "/docs.html",
+
+                                "/css/**",
+                                "/js/**",
+                                "/img/**",
+
                                 "/swagger-ui/**",
-                                "/v3/api-docs/**"
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs"
                         ).permitAll().anyRequest().authenticated()
                 )
                 .addFilterBefore(
