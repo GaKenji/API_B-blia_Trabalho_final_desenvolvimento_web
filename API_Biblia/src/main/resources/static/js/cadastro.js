@@ -29,18 +29,3 @@ document.getElementById('form-cadastro').addEventListener('submit', async functi
         alert('Erro de conexão. Verifique se o banco de dados e o servidor Back-end estão rodando.');
     }
 });
-
-const btnSenha = document.getElementById('btn-senha');
-const inputSenha = document.getElementById('senha');
-
-if (btnSenha && inputSenha) {
-    btnSenha.addEventListener('click', function() {
-        if (inputSenha.type === 'password') {
-            inputSenha.type = 'text';
-            btnSenha.classList.replace('bx-hide', 'bx-show');
-        } else {
-            inputSenha.type = 'password';
-            btnSenha.classList.replace('bx-show', 'bx-hide');
-        }
-    });
-}
