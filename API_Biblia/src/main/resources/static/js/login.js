@@ -17,7 +17,8 @@ document.getElementById('form-login').addEventListener('submit', async function(
         });
 
         if (resposta.ok) {
-            localStorage.setItem('usuarioLogado', 'true');
+            const dados = await resposta.json();
+            localStorage.setItem('token', dados.token);
             window.location.href = 'docs.html';
         } else {
             alert('E-mail ou senha inválidos!');
