@@ -5,7 +5,20 @@ document.getElementById('form-login').addEventListener('submit', async function(
     const senha = document.getElementById('senha').value;
 
     try {
+        console.log(window.location.origin);
+        console.log("Enviando login para:", window.location.origin + "/login");
+
         const resposta = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                senha
+            })
+        });
+        /*const resposta = await fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,7 +28,7 @@ document.getElementById('form-login').addEventListener('submit', async function(
                 senha: senha
             })
         });
-
+        */
         if (resposta.ok) {
             const dados = await resposta.json();
             localStorage.setItem('token', dados.token);
