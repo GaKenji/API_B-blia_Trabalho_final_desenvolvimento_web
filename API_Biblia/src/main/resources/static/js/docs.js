@@ -1,6 +1,36 @@
 document.getElementById('btn-deslogar').addEventListener('click', function() {
-    localStorage.removeItem('usuarioLogado');
+    localStorage.removeItem('token');
     window.location.href = 'login.html';
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch('/developer/dashboard', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const dados = await response.json();
+            document.getElementById('user-nome').textContent = dados.nome;
+            document.getElementById('user-apikey').textContent = dados.apiKey;
+            document.getElementById('user-reqs').textContent = dados.requisicoes;
+        } else {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+    } catch (error) {
+        console.error("Erro ao carregar dashboard:", error);
+    }
 });
 
 const docData = {
