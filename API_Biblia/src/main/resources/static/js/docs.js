@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        window.location.href = 'login.html';
+        //window.location.href = 'login.html';
         return;
     }
 
@@ -38,19 +38,19 @@ const docData = {
         method: 'GET',
         path: '/versiculo-aleatorio',
         desc: 'Retorna um único versículo bíblico sorteado aleatoriamente do banco de dados.',
-        json: '{\n  "livro": "João",\n  "capitulo": 3,\n  "numVersiculo": 16,\n  "versiculo": "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna."\n}'
+        json: '{\n  "livro": "String",\n  "capitulo": "int",\n  "numVersiculo": "int",\n  "versiculo": "String"\n}'
     },
     'temas-lista': {
         method: 'GET',
         path: '/temas',
         desc: 'Retorna uma lista contendo todos os temas bíblicos disponíveis na API.',
-        json: '[\n  "Amor",\n  "Perdão",\n  "Unitarismo",\n  "Fé",\n  "Esperança"\n]'
+        json: '[\n  "String" \n]'
     },
     'temas-unitarismo': {
         method: 'GET',
         path: '/temas/Unitarismo',
         desc: 'Retorna todos os versículos classificados sob o tema específico pesquisado (ex: Unitarismo).',
-        json: '[\n  {\n    "livro": "Deuteronômio",\n    "capitulo": 6,\n    "numVersiculo": 4,\n    "versiculo": "Ouve, Israel, o Senhor nosso Deus é o único Senhor."\n  }\n]'
+        json: '[\n  {\n    "livro": "String",\n    "capitulo": "int",\n    "numVersiculo": "int",\n    "versiculo": "String"\n  }\n]'
     }
 };
 
