@@ -186,3 +186,26 @@ INSERT INTO capitulos(capitulo, id_livro) SELECT generate_series(1,1),64;
 INSERT INTO capitulos(capitulo, id_livro) SELECT generate_series(1,1),65;
 INSERT INTO capitulos(capitulo, id_livro) SELECT generate_series(1,22),66;
 
+-- Inderindo versículos
+
+INSERT INTO versiculos (versiculo, texto, id_capitulo) VALUES
+(30, 'Eu e o Pai somos um.', 1039),
+(3, 'E a vida eterna é esta: que te conheçam a Ti, o Único Deus verdadeiro, e a Jesus Cristo, a quem enviaste.', 1046),
+(6, 'para nós, contudo, há um único Deus, o Pai, de quem tudo procede e para quem vivemos; em um só Senhor, Jesus Cristo, por intermédio de quem tudo o que há veio a existir, e por meio de quem também vivemos.', 1102),
+(5, 'Porque há um só Deus e um só Mediador entre Deus e o ser humano, Cristo Jesus, homem.', 1143),
+(13, 'Entretanto, ninguém ao ser tentado deverá dizer: "Estou sendo tentado por Deus". Ora, Deus não pode ser tentado pelo mal, e a nenhuma pessoa tenta.', 1171);
+
+--Temas
+
+INSERT INTO temas(tema)VALUES
+('Unitarismo'),
+('Guarda do Sábado');
+
+--Relação entre tema e versiculo
+INSERT INTO versiculo_tema (versiculo_id, tema_id) VALUES
+(1,1),
+(2,1),
+(3,1),
+(4,1),
+(5,1);
+
